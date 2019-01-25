@@ -6,8 +6,8 @@
 # User class and functions to create, write and read users
 
 
-USERS_DATA = "data/users.txt"
-LAST_USER_ID = "data/last_user_id"
+USERS_DATA = "../Data/users.txt"
+LAST_USER_ID = "../Data/last_user_id.txt"
 
 
 class User:
@@ -29,30 +29,30 @@ class User:
         return 1.2 + 0.7 * exercise_level
 
     def standard_calories(self):
-        if sex = "M":
-            bmr = 10 * weight + 6.25 * height - 5 * age + 5
+        if self.sex == "M":
+            bmr = 10 * self.weight + 6.25 * self.height - 5 * self.age + 5
         else:
-            bmr = 10 * weight + 6.25 * height - 5 * age - 161
+            bmr = 10 * self.weight + 6.25 * self.height - 5 * self.age - 161
 
-        calories = bmr * exerciseFactor
-        if calories / weight < 18:
-            calories = weight * 18
+        calories = bmr * self.exerciseFactor
+        if calories / self.weight < 18:
+            calories = self.weight * 18
 
         return calories
 
     def maintain_weight_calories(self):
         std = self.standard_calories()
-        return (std * 0.9, std * 1.1)
+        return (std * 0.8, std * 1.2)
 
     def lower_weight_calories(self):
         lower = self.standard_calories() * 0.8
-        return (lower * 0.9, lower * 1.1)
+        return (lower * 0.8, lower * 1.2)
 
     def calories_range(self):
-        if goal == "lower":
-            return lower_weight_calories()
+        if self.goal == "lower":
+            return self.lower_weight_calories()
         else:
-            return maintain_weight_calories()
+            return self.maintain_weight_calories()
 
 
 def read_user(uid):
@@ -71,7 +71,7 @@ def create_user(age = 30, height = 170, weight = 70, sex = "M", exercise_level =
     f.close()
 
     f = open(LAST_USER_ID, 'w')
-    f.write(uid)
+    f.write(str(uid))
     f.close()
 
     return User(uid, age, height, weight, sex, exercise_level, goal)

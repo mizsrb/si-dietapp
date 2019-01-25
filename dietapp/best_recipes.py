@@ -9,7 +9,7 @@ import numpy as np
 def best_recipes(uid, n):
     test_user_id = uid
     n_best_values = n
-    filename = "full_format_recipes.json"
+    filename = "../Data/full_format_recipes.json"
 
     with open(filename, 'r') as f:
         dict = js.load(f)
@@ -17,7 +17,7 @@ def best_recipes(uid, n):
     recipeInfo = pd.DataFrame(dict)
     recipeInfo = recipeInfo.astype({"title": str})
 
-    rating = pd.read_pickle("Rating")
+    rating = pd.read_pickle("../Data/rating")
 
     reader = sp.Reader(line_format = "user item rating", sep = "\t")
     data = sp.Dataset.load_from_df(rating, reader = reader)
