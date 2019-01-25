@@ -22,11 +22,9 @@ def register_user(age = 30, height = 170, weight = 70, sex = "M", exercise_level
 def recommended_recipe(uid):
     user = usr.read_user(uid)
     calories_range = user.calories_range()
-    print(calories_range)
     best_rec = best_recipes(uid, 50)
     for recipe in best_rec:
         recipe_calories = get_calories(datafr, recipe[1]) * 3   # Calories for the day, puede que haya error aqui
-        print(recipe_calories)
         if(recipe_calories > calories_range[0]) and (recipe_calories < calories_range[1]):
             index = get_index(datafr, recipe[1])
             return (datafr.at[index, 'title'], datafr.at[index, 'directions'])
@@ -67,4 +65,3 @@ datafr = datafr.astype({'title': str})
 
 #rating = pd.read_pickle(ratingFile)
 #print(rating)
-#print(rating.tail(1)['rating'])
