@@ -2,15 +2,18 @@
 
 DietApp is a recipe recommendation system to easily meet fitness goals or plan restrictive diets.
 
-> App GIF goes here
+## Structure
+
+- dietapp: Python source code
+- Data: Users, recipes and rating data, as well a script used to generate some extra ratings
+- Media: Video with a example of use
 
 ## Setup / Usage
 
-> To do
-
-## Built with
-
-- [Nutritionix](https://www.nutritionix.com/business/api) - Nutrition database used
+To use DietApp, import dietapp/dietapp.py and use the following functions:
+- register_user(age, height, weight, sex, exercise_level, goal): to register a new user
+- recommend_recipe(uid): to ask for a recommendation
+- rate_recipe(uid, title, rating): to rate a recipe
 
 ## Authors
 
